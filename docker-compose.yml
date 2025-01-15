@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     environment:
-      - GITHUB_RUNNER_URL=${GITHUB_ORG_URL}
+      - GITHUB_RUNNER_URL=${GITHUB_RUNNER_URL}
       - GITHUB_RUNNER_TOKEN=${GITHUB_RUNNER_TOKEN}
       - RUNNER_NAME=pi-runner
       - RUNNER_LABELS=self-hosted,linux,arm64
