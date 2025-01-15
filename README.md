@@ -19,7 +19,7 @@ Installation
 ### 1\. Cloning the Repository
 
 ```bash
-git clone https://github.com/<YourUsername>/docker-github-runner.git
+git clone https://github.com/jackammon/docker-self-hosted-runner.git
 cd docker-github-runner
 ```
 
