@@ -3,45 +3,6 @@ Dockerized Self-Hosted GitHub Actions Runner
 
 This repository contains a Dockerfile and entrypoint script to set up a **self-hosted GitHub Actions runner** on a Linux host (e.g., Ubuntu, Raspberry Pi, etc.).
 
-Table of Contents
------------------
-
-1.  [Overview](#overview)
-2.  [Prerequisites](#prerequisites)
-3.  [Installation](#installation)
-    1.  [Cloning the Repository](#1-cloning-the-repository)
-    2.  [Building the Docker Image](#2-building-the-docker-image)
-4.  [Usage](#usage)
-    1.  [Environment Variables](#1-environment-variables)
-    2.  [Running the Container](#2-running-the-container)
-5.  [Docker Compose (Optional)](#docker-compose-optional)
-6.  [Updating the Runner](#updating-the-runner)
-
-* * * * *
-
-Overview
---------
-
-This setup allows you to:
-
--   Self-host your own GitHub Actions runner on a Linux host.
--   Run the runner inside a Docker container.
--   Easily manage the runner lifecycle (start, stop, remove, rebuild).
--   Capture logs using Docker's built-in tooling or third-party solutions.
--   Label and group runners for easier job assignment.
-
-* * * * *
-
-Features
---------
-
--   **ARM/ARM64-compatible**: Ideal for Raspberry Pi, NVIDIA Jetson boards, or other ARM-based systems.
--   **Automatic registration** with your GitHub repository or organization.
--   **Graceful de-registration** on container stop, preventing stale runners in your GitHub settings.
--   **Configurable labels** for finer control in your GitHub Action workflows.
-
-* * * * *
-
 Prerequisites
 -------------
 
