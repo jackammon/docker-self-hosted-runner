@@ -12,8 +12,8 @@ if [[ -n "${GITHUB_RUNNER_TOKEN}" ]]; then
   ./config.sh --unattended \
     --url "${GITHUB_RUNNER_URL}" \
     --token "${GITHUB_RUNNER_TOKEN}" \
-    --name "${RUNNER_NAME:-$(hostname)}" \
-    --labels "${RUNNER_LABELS:-self-hosted,linux,arm64}" \
+    --name "${RUNNER_NAME}" \
+    --labels"${RUNNER_LABELS}" \
     --replace
 
   CONFIGURED_RUNNER=true
