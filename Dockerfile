@@ -1,11 +1,9 @@
 FROM ubuntu:22.04
 
-# Set ARGs for version and architecture
-ARG RUNNER_VERSION="2.309.0"
-# For Raspberry Pi 5, we need 'arm64'
+ARG RUNNER_VERSION="2.317.0"
 ARG RUNNER_ARCH="arm64"
 
-# Install dependencies
+# Install base dependencies
 RUN apt-get update && apt-get install -y \
     curl \
     jq \
@@ -13,24 +11,31 @@ RUN apt-get update && apt-get install -y \
     tar \
     sudo \
     git \
+    docker.io \  # Added Docker CLI
     && rm -rf /var/lib/apt/lists/*
 
-# Create a user for the runner
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+# Create user without password
+RUN useradd -m docker && \
+    usermod -aG sudo docker && \
+    usermod -aG docker docker && \
+    echo "docker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Switch to the user
 USER docker
 WORKDIR /home/docker
 
-# Download the GitHub Actions runner
+# Download runner
 RUN curl -L \
   "https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-${RUNNER_ARCH}-${RUNNER_VERSION}.tar.gz" \
-  -o "actions-runner-linux-${RUNNER_ARCH}-${RUNNER_VERSION}.tar.gz" \
-  && tar xzf "actions-runner-linux-${RUNNER_ARCH}-${RUNNER_VERSION}.tar.gz" \
-  && rm "actions-runner-linux-${RUNNER_ARCH}-${RUNNER_VERSION}.tar.gz"
+  -o runner.tar.gz \
+  && tar xzf runner.tar.gz \
+  && rm runner.tar.gz
 
-# Copy entrypoint script
-COPY entrypoint.sh entrypoint.sh
-RUN chmod +x entrypoint.sh
+# Install docker-compose
+RUN sudo curl -L "https://github.com/docker/compose/releases/download/v2.27.1/docker-compose-linux-aarch64" \
+    -o /usr/local/bin/docker-compose \
+    && sudo chmod +x /usr/local/bin/docker-compose
+
+COPY entrypoint.sh .
+RUN sudo chmod +x entrypoint.sh
 
 ENTRYPOINT ["/home/docker/entrypoint.sh"]
