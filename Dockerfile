@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     tar \
     sudo \
     git \
-    docker.io \  # Added Docker CLI
+    docker.io \
     && rm -rf /var/lib/apt/lists/*
 
 # Create user without password
