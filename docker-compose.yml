@@ -1,13 +1,12 @@
-version: '3.8'
 services:
   github-runner:
     image: runner:latest
     container_name: github-runner
-    restart: always
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./runner-data:/home/docker
     env_file:
       - .env
     environment:
-      - GITHUB_RUNNER_URL=${GITHUB_RUNNER_URL}
-      - GITHUB_RUNNER_TOKEN=${GITHUB_RUNNER_TOKEN}
-      - RUNNER_NAME=pi-runner
-      - RUNNER_LABELS=self-hosted,linux,arm64,pi-runner
+      - DOCKER_HOST=unix:///var/run/docker.sock
