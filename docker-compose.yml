@@ -5,7 +5,8 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./runner-data:/home/docker
+      # Mount persistent data into a subdirectory so that /home/docker (with runner files) isn’t overwritten.
+      - ./runner-data:/home/docker/data
     env_file:
       - .env
     environment:
