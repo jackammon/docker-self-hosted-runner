@@ -1,5 +1,6 @@
 services:
   github-runner:
+    build: .
     image: runner:latest
     container_name: github-runner
     restart: unless-stopped
