@@ -20,7 +20,7 @@ Installation
 
 ```bash
 git clone https://github.com/jackammon/docker-self-hosted-runner.git
-cd docker-github-runner
+cd docker-self-hosted-runner
 ```
 
 ### 2\. Building the Docker Image
