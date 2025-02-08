@@ -60,7 +60,7 @@ docker run -d\
   --restart always\
   -e GITHUB_RUNNER_URL="https://github.com/<YOUR_USER>/<YOUR_REPO>"\
   -e GITHUB_RUNNER_TOKEN="<YOUR_TOKEN_HERE>"\
-  -e RUNNER_NAME="my-pi-runner"\
+  -e RUNNER_NAME="pi-runner"\
   -e RUNNER_LABELS="self-hosted,linux,arm64"\
   runner:latest
   ```
@@ -73,7 +73,7 @@ docker run -d\
   --restart always\
   -e GITHUB_RUNNER_URL="https://github.com/<YOUR_ORG>"\
   -e GITHUB_RUNNER_TOKEN="<YOUR_TOKEN_HERE>"\
-  -e RUNNER_NAME="my-pi-org-runner"\
+  -e RUNNER_NAME="pi-runner"\
   -e RUNNER_LABELS="self-hosted,linux,arm64"\
   runner:latest
   ```
@@ -84,7 +84,7 @@ docker run -d\
 
 * * * * *
 
-Docker Compose (Optional)
+Docker Compose
 -------------------------
 
 You can manage the runner more conveniently with Docker Compose:
@@ -92,8 +92,6 @@ You can manage the runner more conveniently with Docker Compose:
 1.  **Create a `docker-compose.yml`** in the project root:
 
     ```
-    version: '3.8'
-
     services:
       github-runner:
         image: runner:latest
@@ -102,7 +100,7 @@ You can manage the runner more conveniently with Docker Compose:
         environment:
           GITHUB_RUNNER_URL: "https://github.com/<YOUR_USER>/<YOUR_REPO>"
           GITHUB_RUNNER_TOKEN: "<YOUR_TOKEN_HERE>"
-          RUNNER_NAME: "my-compose-runner"
+          RUNNER_NAME: "pi-runner"
           RUNNER_LABELS: "self-hosted,linux,arm64"
 
 2.  **Run**:
@@ -113,26 +111,3 @@ You can manage the runner more conveniently with Docker Compose:
 -   The runner should appear under **Settings** > **Actions** > **Runners**.
 -   This approach can be integrated with other services (databases, web apps, etc.) for a cohesive dockerized environment.
 
-* * * * *
-
-Updating the Runner
--------------------
-
-The GitHub Actions runner is updated regularly. To update:
-
-1.  **Check the latest runner version** on [GitHub Actions Runner Releases](https://github.com/actions/runner/releases).
-
-2.  Update `RUNNER_VERSION` in the Dockerfile to match the latest release.
-
-3.  Rebuild the image:
-
-    ```
-    docker build -t runner:latest .
-
-4.  Redeploy the container:
-
-    ```
-    docker stop gh-runner && docker rm gh-runner
-    docker run -d --restart always ... runner:latest
-
-* * * * *
