@@ -13,7 +13,7 @@ if [[ -n "${GITHUB_RUNNER_TOKEN}" ]]; then
     --url "${GITHUB_RUNNER_URL}" \
     --token "${GITHUB_RUNNER_TOKEN}" \
     --name "${RUNNER_NAME}" \
-    --labels" ${RUNNER_LABELS}" \
+    --labels "${RUNNER_LABELS}" \
     --replace
 
   CONFIGURED_RUNNER=true
