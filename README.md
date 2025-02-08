@@ -50,6 +50,11 @@ RUNNER_LABELS=self-hosted,linux,arm64,pi-runner
 
 Usage
 -----
+Build the Container
+```
+docker-compose build --no-cache
+```
+
 Running the Container
 
 ```
