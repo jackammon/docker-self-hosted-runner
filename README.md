@@ -106,7 +106,8 @@ You can manage the runner more conveniently with Docker Compose:
 2.  **Run**:
 
     ```
-    docker compose up -d`
+    docker compose up -d
+    ```
 
 -   The runner should appear under **Settings** > **Actions** > **Runners**.
 -   This approach can be integrated with other services (databases, web apps, etc.) for a cohesive dockerized environment.
