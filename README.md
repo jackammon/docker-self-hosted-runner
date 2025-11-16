@@ -58,7 +58,7 @@ docker-compose build --no-cache
 Running the Container
 
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 Restarting the container
